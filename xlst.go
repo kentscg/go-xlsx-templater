@@ -6,7 +6,9 @@ import (
 	"io"
 	"reflect"
 	"regexp"
+	"strconv"
 	"strings"
+	"time"
 
 	"github.com/aymerick/raymond"
 	"github.com/tealeg/xlsx"
@@ -207,6 +209,21 @@ func renderCell(cell *xlsx.Cell, ctx interface{}) error {
 	if err != nil {
 		return err
 	}
+
+	// check if date object
+	t, err := time.Parse("2006-01-02T15:04:05.000Z", out)
+	if err == nil {
+		cell.SetValue(t)
+		return nil
+	}
+
+	// check if number
+	f, err := strconv.ParseFloat(out, 64)
+	if err == nil {
+		cell.SetFloatWithFormat(f, cell.GetNumberFormat())
+		return nil
+	}
+
 	cell.Value = out
 	return nil
 }
