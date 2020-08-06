@@ -1,5 +1,6 @@
 # go-xlsx-templater
-Forked from https://github.com/ivahaev/go-xlsx-templater
+Forked from https://github.com/ivahaev/go-xlsx-templater.
+
 Simple **.xlsx** (Excel XML document) template based document generator using handlebars.
 
 Takes input **.xlsx** documents with mustache sippets in it and renders new document with snippets replaced by provided context.

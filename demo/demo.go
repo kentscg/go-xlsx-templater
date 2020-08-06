@@ -1,8 +1,6 @@
 package main
 
-import (
-	"github.com/ivahaev/go-xlsx-templater"
-)
+import xlst "github.com/kentscg/go-xlsx-templater"
 
 func main() {
 	doc := xlst.New()
