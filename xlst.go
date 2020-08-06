@@ -211,7 +211,7 @@ func renderCell(cell *xlsx.Cell, ctx interface{}) error {
 	}
 
 	// check if date object
-	t, err := time.Parse("2006-01-02T15:04:05.000Z", out)
+	t, err := time.Parse(time.RFC3339, out)
 	if err == nil {
 		cell.SetValue(t)
 		return nil
