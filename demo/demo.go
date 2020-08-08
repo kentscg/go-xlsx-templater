@@ -32,7 +32,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = doc.Save("./report.xlsx")
+	err = doc.Save("./result.xlsx")
 	if err != nil {
 		panic(err)
 	}

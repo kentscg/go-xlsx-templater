@@ -185,6 +185,8 @@ func cloneCell(from, to *xlsx.Cell, options *Options) {
 	to.VMerge = from.VMerge
 	to.Hidden = from.Hidden
 	to.NumFmt = from.NumFmt
+
+	to.SetStringFormula(from.Formula())
 }
 
 func cloneRow(from, to *xlsx.Row, options *Options) {
@@ -346,10 +348,12 @@ func getRangeEndIndex(rows []*xlsx.Row) int {
 
 func renderRow(in *xlsx.Row, ctx interface{}) error {
 	for _, cell := range in.Cells {
+		formula := cell.Formula()
 		err := renderCell(cell, ctx)
 		if err != nil {
 			return err
 		}
+		cell.SetStringFormula(formula)
 	}
 	return nil
 }
