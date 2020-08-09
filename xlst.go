@@ -353,7 +353,9 @@ func renderRow(in *xlsx.Row, ctx interface{}) error {
 		if err != nil {
 			return err
 		}
-		cell.SetStringFormula(formula)
+		if formula != "" {
+			cell.SetStringFormula(formula)
+		}
 	}
 	return nil
 }
