@@ -215,7 +215,13 @@ func renderCell(cell *xlsx.Cell, ctx interface{}) error {
 	// check if date object
 	t, err := time.Parse(time.RFC3339, out)
 	if err == nil {
-		cell.SetValue(t)
+		location, _ := time.LoadLocation("Local")
+		options := xlsx.DateTimeOptions{
+			Location:        location,
+			ExcelTimeFormat: xlsx.DefaultDateTimeFormat,
+		}
+
+		cell.SetDateWithOptions(t, options)
 		return nil
 	}
 
